@@ -1,34 +1,31 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import { useNavigate } from 'react-router-dom';
+import Posts from 'components/Posts';
+import Pagination from 'components/Pagination';
 
 function Home() {
+  const [isLoading, setIsLoading] = useState(false);
   const [posts, setPosts] = useState([])
 
-  const navigate = useNavigate();
-
   useEffect(() => {
-    axios
-      .get('https://jsonplaceholder.typicode.com/posts')
-      .then((res) => {
-        setPosts(res.data)
-      })
-      .catch((err) => {
-        console.log(err)
-      })
+    const fetchData = async () => {
+      setIsLoading(true)
+      const res = await axios.get('https://jsonplaceholder.typicode.com/posts')
+      setPosts(res.data);
+      setIsLoading(false);
+    }
+
+    fetchData()
   }, [])
 
   return (
     <div>
       {
-        posts.map(post => (
-          <div onClick={() => navigate(`/post/${post.id}`)} style={{ display: "flex", justifyContent: "space-between", alignItems: "center", padding: "0px 20px", border: '1px solid black' }}>
-            <p>{post.title}</p>
-            <span>작성자 {post.userId}</span>
-          </div>
-        ))
+        isLoading ?
+          <div>Loading...</div>
+          : <Posts posts={posts} />
       }
-
+      <Pagination />
     </div >
   )
 }

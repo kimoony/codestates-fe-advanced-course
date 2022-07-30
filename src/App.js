@@ -1,6 +1,6 @@
 import { HashRouter, Routes, Route } from 'react-router-dom';
 import Home from './pages/Home';
-import Post from './pages/Post';
+import PostItem from './pages/PostItem';
 
 
 function App() {
@@ -9,7 +9,7 @@ function App() {
       <div>
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="post/:id" element={<Post />} />
+          <Route path="post/:id" element={<PostItem />} />
         </Routes>
       </div>
     </HashRouter>
