@@ -1,32 +1,43 @@
-import React, { useEffect, useState } from 'react';
-import axios from 'axios';
+import React, { useState } from 'react';
 import Posts from 'components/Posts';
 import Pagination from 'components/Pagination';
+import styled from 'styled-components';
 
-function Home() {
-  const [isLoading, setIsLoading] = useState(false);
-  const [posts, setPosts] = useState([])
 
-  useEffect(() => {
-    const fetchData = async () => {
-      setIsLoading(true)
-      const res = await axios.get('https://jsonplaceholder.typicode.com/posts')
-      setPosts(res.data);
-      setIsLoading(false);
-    }
+const Container = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+`
 
-    fetchData()
-  }, [])
+const ListContainer = styled.div`
+  width: 90vw;
+`
+const Loading = styled.div`
+  font-size: 30px;
+  font-weight: bold;
+`
+
+
+function Home({ isLoading, posts }) {
+  const [currentPage, setCurrentPage] = useState(1);
+
 
   return (
-    <div>
+    <Container>
+      <h1>게시물 리스트</h1>
       {
         isLoading ?
-          <div>Loading...</div>
-          : <Posts posts={posts} />
+          <Loading>Loading...</Loading>
+          : (
+            <ListContainer>
+              <Posts posts={posts} />
+              <Pagination />
+            </ListContainer>
+          )
       }
-      <Pagination />
-    </div >
+    </Container >
   )
 }
 
