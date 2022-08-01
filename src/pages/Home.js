@@ -45,6 +45,7 @@ function Home({ isLoading, posts }) {
               <Pagination
                 postPerPage={postPerPage}
                 totalPosts={posts.length}
+                currentPage={currentPage}
                 setCurrentPage={setCurrentPage}
               />
             </ListContainer>

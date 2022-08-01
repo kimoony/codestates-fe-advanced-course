@@ -7,9 +7,10 @@ const Container = styled.nav`
   justify-content: center;
   margin-top: 20px;
   margin-bottom: 20px;
+  gap: 5px;
 `
 
-const PageNum = styled.button`
+const PageBtn = styled.button`
   background-color: #fff;
   list-style: none;
   padding: 5px 10px;
@@ -23,28 +24,57 @@ const PageNum = styled.button`
     background-color: #2986F5;
   }
 
-  &:focus {
-    color: #fff;
+  &[disabled] {
+    background-color: #E3E3E3;
+    font-weight: bold;
+    cursor: revert;
+    color: lightgray;
+    
+    &:hover {
+    font-weight: 0px;
+  }
+  }
+
+  &[aria-current] {
     background-color: #2986F5;
+    color: #fff;
+    font-weight: bold;
     cursor: revert;
   }
 `
 
-function Pagination({ postPerPage, totalPosts, setCurrentPage }) {
-  const pageNums = [];
-  for (let i = 1; i <= Math.ceil(totalPosts / postPerPage); i++) {
-    pageNums.push(i);
+function Pagination({ postPerPage, totalPosts, currentPage, setCurrentPage }) {
+  const Pages = [];
+  const numpages = Math.ceil(totalPosts / postPerPage)
+  for (let i = 1; i <= numpages; i++) {
+    Pages.push(i);
   }
 
   return (
     <Container>
+      <PageBtn
+        onClick={() => setCurrentPage(currentPage - 1)}
+        disabled={currentPage === 1}
+      >
+        &lt;
+      </PageBtn>
       {
-        pageNums.map((num) => (
-          <PageNum key={num} onClick={() => setCurrentPage(num)}>
+        Pages.map((num) => (
+          <PageBtn
+            key={num}
+            onClick={() => setCurrentPage(num)}
+            aria-current={currentPage === num ? "currentPage" : null}
+          >
             {num}
-          </PageNum>
+          </PageBtn>
         ))
       }
+      <PageBtn
+        onClick={() => setCurrentPage(currentPage + 1)}
+        disabled={currentPage === numpages}
+      >
+        &gt;
+      </PageBtn>
     </Container>
   )
 }
