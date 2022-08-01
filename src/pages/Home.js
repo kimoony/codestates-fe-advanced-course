@@ -22,6 +22,15 @@ const Loading = styled.div`
 
 function Home({ isLoading, posts }) {
   const [currentPage, setCurrentPage] = useState(1);
+  const [postPerPage] = useState(10);
+
+  const indexOfLast = currentPage * postPerPage;
+  const indexOfFirst = indexOfLast - postPerPage;
+  const currentPosts = (posts) => {
+    let currentPosts = 0;
+    currentPosts = posts.slice(indexOfFirst, indexOfLast);
+    return currentPosts;
+  }
 
 
   return (
@@ -32,8 +41,12 @@ function Home({ isLoading, posts }) {
           <Loading>Loading...</Loading>
           : (
             <ListContainer>
-              <Posts posts={posts} />
-              <Pagination />
+              <Posts posts={currentPosts(posts)} />
+              <Pagination
+                postPerPage={postPerPage}
+                totalPosts={posts.length}
+                setCurrentPage={setCurrentPage}
+              />
             </ListContainer>
           )
       }
