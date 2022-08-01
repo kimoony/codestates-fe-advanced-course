@@ -3,7 +3,12 @@ import styled from 'styled-components';
 import PostItem from 'components/PostItem';
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
+import PostComment from 'components/PostComment';
 
+
+const Wrapper = styled.div`
+  border: 1px solid black;
+`
 
 const Loading = styled.div`
   font-size: 30px;
@@ -46,38 +51,22 @@ function PostDetail({ isLoading, posts }) {
 
 
   return (
-    <div>
+    <Wrapper>
       {
         isLoading ?
           <Loading>Loading...</Loading>
           : (
             <DetailContainer>
               <div>
-                <h3>{targetPost.title}</h3>
-                <div>작성자 {targetPost.userId}</div>
+                <PostItem targetPost={targetPost} comments={comments} />
               </div>
               <div>
-                <p>{targetPost.body}</p>
-                <div>댓글 {comments.length}개</div>
-              </div>
-              <div>
-                {
-                  comments.map(comment => (
-                    <div key={comment.id}>
-                      <ul>
-                        <li>
-                          <div>{comment.name}</div>
-                          <p>{comment.body}</p>
-                        </li>
-                      </ul>
-                    </div>
-                  ))
-                }
+                <PostComment comments={comments} />
               </div>
             </DetailContainer>
           )
       }
-    </div>
+    </Wrapper>
   )
 }
 
