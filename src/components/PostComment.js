@@ -1,26 +1,9 @@
 import React from 'react'
-import styled from 'styled-components';
-
-
-const CommnetsBox = styled.div`
-  padding: 20px;
-  border-bottom: 2px solid;
-  border-color: ${(props) => props.borderColor};
-  transition: all ease-in-out .5s;
-`
-
-const CommentName = styled.h4`
-  margin-bottom: 5px;
-  font-weight: bold;
-  color: ${(props) => props.textColor};
-  transition: all ease-in-out .5s;
-`
-
-const CommentBody = styled.p`
-  margin-top: 0px;
-  color: ${(props) => props.subTextColor};
-  transition: all ease-in-out .5s;
-`
+import {
+  CommnetsBox,
+  CommentName,
+  CommentBody,
+} from 'style/components/PostComment.style';
 
 function PostComment({
   comments,

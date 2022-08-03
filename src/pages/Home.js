@@ -1,36 +1,14 @@
 import React, { useState } from 'react';
 import Posts from 'components/Posts';
 import Pagination from 'components/Pagination';
-import styled from 'styled-components';
 import NavTheme from 'components/NavTheme';
+import {
+  Wrapper,
+  Title,
+  ListContainer,
+  Loading
+} from 'style/pages/Home.style';
 
-
-const Wrapper = styled.div`
-  width: 100vw;
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  background-color: ${(props) => props.bgColor};
-  transition: all ease-in-out .5s;
-`
-
-const Title = styled.h1`
-  margin-top: 10px;
-  margin-bottom: 35px;
-  font-size: 30px;
-  font-weight: bold;
-  color: ${(props) => props.textColor};
-  transition: all ease-in-out .5s;
-`
-
-const ListContainer = styled.div`
-  width: 90vw;
-`
-const Loading = styled.div`
-  font-size: 30px;
-  font-weight: bold;
-`
 
 
 function Home({

@@ -8,7 +8,6 @@ export const lightState = atom({
     textColor: '#000',
     subTextColor: 'gray',
     borderColor: '#E3E3E3',
-    bgColor2: '#F7F7F7',
     btnColor: '#4A4B4D',
     btnTextColor: '#fff',
     accentColor: "#2986F5",
