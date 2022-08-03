@@ -7,11 +7,14 @@ const ListBox = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 0 20px;
-  border-bottom: 1px solid #E3E3E3;
+  padding: 20px;
+  border-bottom: 1px solid;
+  border-color: ${(props) => props.borderColor};
+  transition: all ease-in-out .5s;
 
-  :first-child {
-    border-top: 5px solid #E3E3E3;
+  &:first-child {
+    border-top: 5px solid;
+    border-color: ${(props) => props.borderColor};
   }
 `
 
@@ -22,9 +25,21 @@ const List = styled.li`
 
 const Title = styled.h3`
   font-size: 18px;
+  color: ${(props) => props.textColor};
+  transition: all ease-in-out .5s;
+
+  &:hover {
+    color: ${(props) => props.accentColor};
+    font-weight: bold;
+  }
 `
 
-function Posts({ posts }) {
+const UserId = styled.div`
+  color: ${(props) => props.textColor};
+  transition: all ease-in-out .5s;
+`
+
+function Posts({ posts, textColor, borderColor, accentColor }) {
 
   const navigate = useNavigate();
 
@@ -32,11 +47,11 @@ function Posts({ posts }) {
     <ul>
       {
         posts.map((post) => (
-          <ListBox key={post.id}>
+          <ListBox key={post.id} borderColor={borderColor}>
             <List onClick={() => navigate(`/post/${post.id}`)}>
-              <Title>{post.title}</Title>
+              <Title textColor={textColor} accentColor={accentColor}>{post.title}</Title>
             </List>
-            <div>작성자 {post.userId}</div>
+            <UserId textColor={textColor}>작성자 {post.userId}</UserId>
           </ListBox>
         ))
       }
