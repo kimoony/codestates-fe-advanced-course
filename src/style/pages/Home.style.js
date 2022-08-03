@@ -21,6 +21,7 @@ export const Title = styled.h1`
 
 export const ListContainer = styled.div`
   width: 90vw;
+  height: 100vh;
 `
 export const Loading = styled.div`
   font-size: 30px;

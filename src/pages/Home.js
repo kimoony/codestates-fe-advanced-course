@@ -10,7 +10,6 @@ import {
 } from 'style/pages/Home.style';
 
 
-
 function Home({
   isLoading,
   posts,
