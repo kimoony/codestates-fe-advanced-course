@@ -29,7 +29,6 @@ function App() {
   }
 
   const current = useRecoilValue(themeState);
-  console.log(current)
   const bgColor = current.bgColor;
   const btnTextColor = current.btnTextColor;
   const btnColor = current.btnColor;

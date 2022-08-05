@@ -106,3 +106,11 @@ npm 8.3.0
     - `Recoil`을 학습하고 있어서 Recoil을 사용했는데 색상을 적용할 때 props로 전달을 하다보니 코드가 조금 지저분해 보인다.
     - props로 전달하는 것보다 조금 더 깔금한 방법이 있는지 찾아봐야겠다.
 
+<br /> 
+  
+# 작성자
+
+👨‍💻 **김 훈**
+- GitHub: [@kimoony](https://github.com/kimoony)
+- Blog: [MyBlog](yakjeon.tistory.com)
+
